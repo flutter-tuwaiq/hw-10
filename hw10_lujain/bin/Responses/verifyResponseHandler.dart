@@ -5,6 +5,7 @@ import 'package:shelf/shelf.dart';
 import 'package:supabase/supabase.dart';
 
 import '../Env/SupaBaseEnv.dart';
+import 'ResponseMsg/responseMsg.dart';
 
 verifyAccountHandler(Request req) async {
   try {
@@ -19,14 +20,14 @@ verifyAccountHandler(Request req) async {
       email: body['email'],
     ); //Update the account's verification status in the database upon successful verification
 
-    return Response.ok(
-      "verify account successfully",
+    return ResponseMsg().successResponse(
+      message: "verify account successfully",
     ); //Return an appropriate response indicating the success of the account creation process
   } catch (e) {
     print(e);
 
-    return Response.badRequest(
-      body: "Something wrong....",
+    return ResponseMsg().errorResponse(
+      message: "Something wrong....",
     ); //Return an appropriate response indicating the failure of the account creation process
   }
 }

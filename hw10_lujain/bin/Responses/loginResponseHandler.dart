@@ -2,7 +2,6 @@
 
 import 'dart:convert';
 import 'package:shelf/shelf.dart';
-import 'package:supabase/supabase.dart';
 import '../Env/SupaBaseEnv.dart';
 import 'ResponseMsg/responseMsg.dart';
 
@@ -14,7 +13,7 @@ loginResponse(Request req) async {
     final List login = await supaBaseVar
         .from('student')
         .select('id, name , email')
-        .eq('username', body['username']);
+        .eq('username', body['username']);  //(string, required): The username of the user.
 
     if (login.isEmpty) {
       return ResponseMsg().errorResponse(
@@ -24,18 +23,13 @@ loginResponse(Request req) async {
 
     await supaBaseVar.auth.signInWithPassword(
       email: login[0]['email'],
-      password: body['password'],
+      password: body['password'],  //(string, required): The password of the user.
     );
 
-    final token = supaBaseVar.auth.currentSession!.accessToken;
-
-    final Map data = login[0];
-    data['token'] = token;
-
-    return ResponseMsg().successResponse(message: 'Login successfull!');
+    return ResponseMsg().successResponse(message: 'Login successfull!');  //A JSON object containing the user's information, such as user ID, name, and token.
   } catch (e) {
     print(e);
 
-    return ResponseMsg().errorResponse(message: 'There is something wrong....');
+    return ResponseMsg().errorResponse(message: 'There is something wrong....');  //A JSON object with an error message indicating invalid credentials or authentication failure.
   }
 }
