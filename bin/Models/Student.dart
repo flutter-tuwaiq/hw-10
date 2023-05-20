@@ -3,7 +3,6 @@
 class Student {
   final int? id;
   final String? username;
-  final String? password;
   final String? email;
   final String? name;
   final String? idAuth;
@@ -11,7 +10,6 @@ class Student {
   Student({
     this.id,
     required this.username,
-    required this.password,
     required this.email,
     required this.name,
     required this.idAuth,
@@ -21,7 +19,6 @@ class Student {
     return Student(
       id: json['id'],
       username: json['username'],
-      password: json['password'],
       email: json['email'],
       name: json['name'],
       idAuth: json['id_auth'],
@@ -31,7 +28,6 @@ class Student {
   toMap() {
     final jsonMap = {
       'username': username,
-      'password': password,
       'email': email,
       'name': name ?? 'guest',
       'id_auth': idAuth,

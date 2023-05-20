@@ -44,7 +44,6 @@ signupResponse(Request req) async {
 
     Student newStudent = Student(
       username: body['username']!,
-      password: body['password'],
       email: userInfo.user!.email!,
       name: body['name'],
       idAuth: userInfo.user!.id,

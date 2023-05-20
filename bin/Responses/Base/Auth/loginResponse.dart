@@ -28,7 +28,6 @@ loginResponse(Request req) async {
     // look for student in database
     List studentList = await supaClient.from('Student').select('*').match({
       'username': '${body['username']}',
-      'password': '${body['password']}',
     });
 
     if (studentList.isEmpty) {
