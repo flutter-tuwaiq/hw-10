@@ -39,7 +39,7 @@ Future<Response> signupHandler(Request req) async {
 
     // add the user to the students table.
     final idAuth = userInfo.user?.id;
-    await await supabase.from("students").insert({
+    await supabase.from("students").insert({
       "username": body["username"],
       "password": body["password"],
       "email": body["email"],

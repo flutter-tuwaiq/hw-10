@@ -42,6 +42,7 @@ Future<Response> loginHandler(Request req) async {
         {
           "name": name,
           "user ID": idAuth,
+          "token": supabase.auth.currentSession!.accessToken,
         },
       ],
     );
