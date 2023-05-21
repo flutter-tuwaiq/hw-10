@@ -14,7 +14,7 @@ loginUser(Request req) async {
     var select = await EnvSupabase()
         .supabase
         .from("user")
-        .select("id"  "name")
+        .select("id ,name")
         .eq("username", body["username"]);
 
     if (select == null) {
